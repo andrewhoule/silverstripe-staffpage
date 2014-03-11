@@ -1,0 +1,23 @@
+{
+    "name": "andrewhoule/silverstripe-staffpage",
+    "description": "Staff page type with optional categories",
+    "type": "silverstripe-module",
+    "keywords": ["silverstripe", "staff", "staff page", "staff members"],
+    "license": "BSD-3-Clause",
+    "authors": [{
+        "name": "Andrew Houle",
+        "homepage": "http://andyhoule.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "silverstripe/cms": "3.1.*",
+        "silverstripe/framework": "3.1.*",
+        "undefinedoffset/sortablegridfield": "*"
+    },
+    "suggest": {
+        "unclecheese/betterbuttons": "*"
+    },
+    "extra": {
+        "installer-name": "staffpage"
+    }
+}
