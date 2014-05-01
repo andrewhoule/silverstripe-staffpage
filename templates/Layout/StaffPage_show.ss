@@ -3,20 +3,26 @@
 		<% if PhotoSized %><img src="$PhotoSized(130).URL" alt="$FullName" class="staff-img right"><% end_if %>
 		<% if FullName %><h2>$FullName</h2><% end_if %>
 		<% if Meta %>
-			<dl class="info-list">
+			<ul class="meta">
 				<% if JobTitle %>
-					<div class="info-list-item">
-						<dt>Position</dt>
-						<dd>$JobTitle</dd>
-					</div><!-- info-list-item -->
+					<li class="position">
+						<span class="label">Position</span>
+						<span class="definition">$JobTitle</span>
+					</li><!-- position -->
 				<% end_if %>
 				<% if Email %>
-					<div class="info-list-item">
-						<dt>Email</dt>
-						<dd><span class="email">$ObfuscatedEmail</span></dd>
-					</div><!-- info-list-item -->
+					<li class="email">
+						<span class="label">Email</span>
+						<span class="definition">$ObfuscatedEmail</span>
+					</li><!-- email -->
 				<% end_if %>
-			</dl><!-- info-list -->
+				<% if Phone %>
+					<li class="phone">
+						<span class="label">Phone</span>
+						<span class="definition">$Phone</span>
+					</li><!-- phone -->
+				<% end_if %>
+			</ul><!-- meta -->
 		<% end_if %>
 		<% if Bio %>
 			<p>$Bio</p>

@@ -24,6 +24,7 @@ class StaffPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
+                ->addComponent(new GridFieldFilterHeader())
                 ->addComponent(new GridFieldSortableRows('SortOrder'))
         );
         $fields->addFieldToTab("Root.Staff", $StaffGridField);
@@ -40,23 +41,23 @@ class StaffPage extends Page {
                 ->addComponent(new GridFieldEditButton())
                 ->addComponent(new GridFieldDeleteAction())
                 ->addComponent(new GridFieldDetailForm())
+                ->addComponent(new GridFieldFilterHeader())
                 ->addComponent(new GridFieldSortableRows('SortID'))
         );
         $fields->addFieldToTab("Root.Categories", $StaffCategoriesGridField);
 		return $fields;
 	}
- 
 }
  
 class StaffPage_Controller extends Page_Controller {
 
-    public static function load_requirements() {
-        Requirements::javascript("staffpage/js/functions.staffpage.js");
-    }
-
     public function init() {
         parent::init();
         self::load_requirements();
+    }
+
+    public static function load_requirements() {
+        Requirements::javascript("staffpage/js/functions.staffpage.js");
     }
 
 	private static $allowed_actions = array(

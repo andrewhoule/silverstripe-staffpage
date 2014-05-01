@@ -11,7 +11,7 @@ jQuery.fn.defuscate = function() {
         $(this).before('<a href="mailto:' + email + '">' + email + "</a>").remove();
     });
 }; 
-$(".email").defuscate();
+$(".defuscate-email").defuscate();
 
 
 }); // End of Doc Ready

@@ -10,6 +10,10 @@ class Staff extends DataObject {
 		'LastName' => 'Varchar(',
 		'Suffix' => 'Varchar',
 		'Email' => 'Text',
+		'Phone' => 'Text',
+		'Cell' => 'Text',
+		'Fax' => 'Text',
+		'OfficeLocation' => 'Text',
 		'JobTitle' => 'Text',
 		'Bio' => 'HTMLText'
 	);
@@ -22,11 +26,10 @@ class Staff extends DataObject {
 
 	private static $summary_fields = array( 
 		'Thumbnail' => 'Photo',
-    	'FullName' => 'Name',
+    	'FirstName' => 'First Name',
+    	'LastName' => 'Last Name',
     	'JobTitle' => 'Job Title',
-    	'Email' => 'Email',
-    	'Category' => 'Category',
-    	'BioExcerpt' => 'Bio'
+    	'Email' => 'Email'
   	);
 
   	public static $default_sort = 'SortOrder Asc';
@@ -62,8 +65,12 @@ class Staff extends DataObject {
 			TextField::create('MiddleName')->setTitle('Middle Name'),
 			TextField::create('LastName')->setTitle('Last Name'),
 			TextField::create('Suffix')->setTitle('Suffix (ie. C.M.)'),
-			EmailField::create('Email'),
 			TextField::create('JobTitle')->setTitle('Job Title'),
+			EmailField::create('Email'),
+			TextField::create('Phone'),
+			TextField::create('Cell'),
+			TextField::create('Fax'),
+			TextField::create('OfficeLocation')->setTitle('Office Location'),
 			$ImageField,
 			HTMLEditorField::create('Bio')
 		);

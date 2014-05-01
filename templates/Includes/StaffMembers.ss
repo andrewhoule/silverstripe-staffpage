@@ -5,20 +5,20 @@
 				<% if PhotoSized %><img src="$PhotoSized(130).URL" alt="$FullName" class="staff-img right"><% end_if %>
 				<% if FullName %><h3>$FullName</h3><% end_if %>
 				<% if Meta %>
-					<dl class="info-list">
+					<ul class="meta">
 						<% if JobTitle %>
-							<div class="info-list-item">
-								<dt>Position</dt>
-								<dd>$JobTitle</dd>
-							</div><!-- info-list-item -->
+							<li class="position">
+								<span class="label">Position</span>
+								<span class="definition">$JobTitle</span>
+							</li><!-- position -->
 						<% end_if %>
 						<% if Email %>
-							<div class="info-list-item">
-								<dt>Email</dt>
-								<dd><span class="email">$ObfuscatedEmail</span></dd>
-							</div><!-- info-list-item -->
+							<li class="email">
+								<span class="label">Email</span>
+								<span class="definition"><span class="defuscate-email">$ObfuscatedEmail</span></span>
+							</li><!-- email -->
 						<% end_if %>
-					</dl><!-- info-list -->
+					</ul><!-- meta -->
 				<% end_if %>
 				<% if BioExcerpt %>
 					<p>$BioExcerpt(300) <a href="$Link">Read more &rarr;</a></p>
