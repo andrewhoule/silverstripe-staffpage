@@ -38,19 +38,19 @@
 	<% if Website %>
 		<li class="website">
 			<span class="label">Website</span>
-			<span class="definition"><a href="$Website">Website</a></span>
+			<span class="definition"><a href="$Website">$Website</a></span>
 		</li><!-- website -->
 	<% end_if %>
 	<% if Facebook %>
 		<li class="facebook">
 			<span class="label">Facebook</span>
-			<span class="definition"><a href="$Facebook">Facebook</a></span>
+			<span class="definition"><a href="$Facebook">$Facebook</a></span>
 		</li><!-- facebook -->
 	<% end_if %>
 	<% if Twitter %>
 		<li class="twitter">
 			<span class="label">Twitter</span>
-			<span class="definition"><a href="$Twitter">Twitter</a></span>
+			<span class="definition"><a href="$Twitter">$Twitter</a></span>
 		</li><!-- twitter -->
 	<% end_if %>
 </ul><!-- meta -->
