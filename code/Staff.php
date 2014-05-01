@@ -158,7 +158,7 @@ class Staff extends DataObject {
 	}
 
 	public function Meta() {
-		if($this->Email || $this->JobTitle) 
+		if($this->Email || $this->JobTitle || $this->Phone || $this->Fax || $this->Cell || $this->OfficeLocation) 
 			return true;
 	}
 	
