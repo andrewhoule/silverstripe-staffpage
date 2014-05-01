@@ -117,8 +117,24 @@ class Staff extends DataObject {
 			return null;
 	}
 
-	public function PhotoSized($x=130) {
-		 return $this->Photo()->setWidth($x);
+	public function PhotoCropped($x=200,$y=200) {
+		$width = $this->getComponent('StaffPage')->ThumbnailWidth;
+		$height = $this->getComponent('StaffPage')->ThumbnailHeight;
+		if($width != 0) 
+			$x = $width;
+		if($height != 0) 
+			$y = $height;
+		return $this->Photo()->CroppedImage($x,$y);
+	}
+
+	public function PhotoSized($x=700,$y=700) {
+		$width = $this->getComponent('StaffPage')->PhotoFullWidth;
+		$height = $this->getComponent('StaffPage')->PhotoFullHeight;
+		if($width != 0) 
+			$x = $width;
+		if($height != 0) 
+			$y = $height;
+		return $this->Photo()->SetRatioSize($x,$y);
 	}
 
 	public function getTitle() {

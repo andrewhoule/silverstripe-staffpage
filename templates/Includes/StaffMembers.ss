@@ -2,7 +2,7 @@
 	<ul class="staff-members">
 		<% loop Staff %>
 			<li class="staff-member">
-				<% if PhotoSized %><img src="$PhotoSized(130).URL" alt="$FullName" class="staff-img right"><% end_if %>
+				<% if PhotoCropped %><img src="$PhotoCropped(200,200).URL" alt="$FullName" class="thumbnail staff-img"><% end_if %>
 				<% if FullName %><h3>$FullName</h3><% end_if %>
 				<% if Meta %>
 					<ul class="meta">

@@ -12,7 +12,8 @@
     "require": {
         "silverstripe/cms": "3.1.*",
         "silverstripe/framework": "3.1.*",
-        "undefinedoffset/sortablegridfield": "*"
+        "undefinedoffset/sortablegridfield": "*",
+        "tractorcow/silverstripe-sliderfield": "*"
     },
     "suggest": {
         "unclecheese/betterbuttons": "*"

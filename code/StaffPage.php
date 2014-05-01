@@ -1,17 +1,31 @@
 <?php 
  
 class StaffPage extends Page {
-	
-   	private static $has_many = array (
-		'Staff' => 'Staff',
+
+    private static $db = array(
+        'ThumbnailHeight' => 'Int',
+        'ThumbnailWidth' => 'Int',
+        'PhotoFullHeight' => 'Int',
+        'PhotoFullWidth' => 'Int'
+    );
+    
+    private static $has_many = array (
+        'Staff' => 'Staff',
         'StaffCategories' => 'StaffCategory'
-	);
-	
-	private static $icon = 'staffpage/images/staffpage';
-	
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$StaffGridField = new GridField(
+    );
+
+    private static $defaults = array(
+        'ThumbnailHeight' => '150',
+        'ThumbnailHeight' => '150',
+        'PhotoFullWidth' => '400',
+        'PhotoFullHeight' => '400'
+    );
+    
+    private static $icon = 'staffpage/images/staffpage';
+    
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+        $StaffGridField = new GridField(
             'Staff',
             'Staff',
             $this->Staff(),
@@ -45,43 +59,48 @@ class StaffPage extends Page {
                 ->addComponent(new GridFieldSortableRows('SortID'))
         );
         $fields->addFieldToTab("Root.Categories", $StaffCategoriesGridField);
-		return $fields;
-	}
+        $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailWidth","Photo Thumbnail Width",50,400));
+        $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailHeight","Photo Thumbnail Height",50,400));
+        $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullWidth","Photo Fullsize Width",100,1200));
+        $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullHeight","Photo Fullsize Height",100,1200));
+        return $fields;
+    }
+ 
 }
  
 class StaffPage_Controller extends Page_Controller {
+
+    public static function load_requirements() {
+        Requirements::javascript("staffpage/js/functions.staffpage.js");
+    }
 
     public function init() {
         parent::init();
         self::load_requirements();
     }
 
-    public static function load_requirements() {
-        Requirements::javascript("staffpage/js/functions.staffpage.js");
+    private static $allowed_actions = array(
+        'show'
+    );
+    
+    public function getStaff() {
+        $Params = $this->getURLParams();
+        if(is_numeric($Params['ID']) && $Staff = Staff::get()->byID((int)$Params['ID'])) {
+            return $Staff;
+        }
     }
 
-	private static $allowed_actions = array(
-    	'show'
-   	);
-	
-	public function getStaff() {
-		$Params = $this->getURLParams();
-		if(is_numeric($Params['ID']) && $Staff = Staff::get()->byID((int)$Params['ID'])) {
-			return $Staff;
-		}
-	}
-
-   	public function show() {       
-      	if($Staff = $this->getStaff()) {
-        	$Data = array(
-            	'Staff' => $Staff
-         	);
-         	return $this->Customise($Data);
-      	}
-      	else {
-         	return $this->httpError(404, 'Sorry that staff member could not be found');
-      	}
-   	}
+    public function show() {       
+        if($Staff = $this->getStaff()) {
+            $Data = array(
+                'Staff' => $Staff
+            );
+            return $this->Customise($Data);
+        }
+        else {
+            return $this->httpError(404, 'Sorry that staff member could not be found');
+        }
+    }
 
     public function StaffCategories() {
         $staffcategoriesfiltered = new ArrayList();
@@ -113,5 +132,5 @@ class StaffPage_Controller extends Page_Controller {
         if($this->StaffCategories()->count() > 1)
             return true;
     }
-	
+    
 }
