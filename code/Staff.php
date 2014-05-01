@@ -15,6 +15,9 @@ class Staff extends DataObject {
 		'Fax' => 'Text',
 		'OfficeLocation' => 'Text',
 		'JobTitle' => 'Text',
+		'Website' => 'Text',
+		'Facebook' => 'Text',
+		'Twitter' => 'Text',
 		'Bio' => 'HTMLText'
 	);
 	
@@ -71,6 +74,9 @@ class Staff extends DataObject {
 			TextField::create('Cell'),
 			TextField::create('Fax'),
 			TextField::create('OfficeLocation')->setTitle('Office Location'),
+			TextField::create('Website')->setTitle('Website (Full URL)'),
+			TextField::create('Facebook')->setTitle('Facebook (Full URL)'),
+			TextField::create('Twitter')->setTitle('Twitter (Full URL)'),
 			$ImageField,
 			HTMLEditorField::create('Bio')
 		);
@@ -158,7 +164,7 @@ class Staff extends DataObject {
 	}
 
 	public function Meta() {
-		if($this->Email || $this->JobTitle || $this->Phone || $this->Fax || $this->Cell || $this->OfficeLocation) 
+		if($this->Email || $this->JobTitle || $this->Phone || $this->Fax || $this->Cell || $this->OfficeLocation || $this->Website || $this->Facebook || $this->Twitter) 
 			return true;
 	}
 	
