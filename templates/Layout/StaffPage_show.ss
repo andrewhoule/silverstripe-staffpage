@@ -1,7 +1,7 @@
 <div class="staff-member-full">
 	<% loop Staff %>
-		<% if PhotoSized %><img src="$PhotoSized(400).URL" alt="$FullName" class="full staff-img"><% end_if %>
 		<% if FullName %><h2>$FullName</h2><% end_if %>
+		<% if PhotoSized %><img src="$PhotoSized(400).URL" alt="$FullName" class="full staff-img"><% end_if %>
 		<% if Meta %>
 			<ul class="meta">
 				<% if JobTitle %>
