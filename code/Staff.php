@@ -118,22 +118,38 @@ class Staff extends DataObject {
 	}
 
 	public function PhotoCropped($x=200,$y=200) {
-		$width = $this->getComponent('StaffPage')->ThumbnailWidth;
-		$height = $this->getComponent('StaffPage')->ThumbnailHeight;
-		if($width != 0) 
-			$x = $width;
-		if($height != 0) 
-			$y = $height;
+		$thumbnailwidth = $this->getComponent('StaffPage')->ThumbnailWidth;
+		$thumbnailheight = $this->getComponent('StaffPage')->ThumbnailHeight;
+		$originalwidth = $this->Photo()->getWidth();
+		$originalheight = $this->Photo()->getHeight();
+		if($originalwidth < $thumbnailwidth || $originalheight < $thumbnailheight) {
+			$x = $originalwidth;
+			$y = $originalheight;
+		}
+		else {
+			if($thumbnailwidth != 0) 
+				$x = $thumbnailwidth;
+			if($thumbnailheight != 0) 
+				$y = $thumbnailheight;
+		}
 		return $this->Photo()->CroppedImage($x,$y);
 	}
 
 	public function PhotoSized($x=700,$y=700) {
-		$width = $this->getComponent('StaffPage')->PhotoFullWidth;
-		$height = $this->getComponent('StaffPage')->PhotoFullHeight;
-		if($width != 0) 
-			$x = $width;
-		if($height != 0) 
-			$y = $height;
+		$fullwidth = $this->getComponent('StaffPage')->PhotoFullWidth;
+		$fullheight = $this->getComponent('StaffPage')->PhotoFullHeight;
+		$originalwidth = $this->Photo()->getWidth();
+		$originalheight = $this->Photo()->getHeight();
+		if($originalwidth < $fullwidth || $originalheight < $fullheight) {
+			$x = $originalwidth;
+			$y = $originalheight;
+		}
+		else {
+			if($fullwidth != 0) 
+				$x = $fullwidth;
+			if($fullheight != 0) 
+				$y = $fullheight;
+		}
 		return $this->Photo()->SetRatioSize($x,$y);
 	}
 
