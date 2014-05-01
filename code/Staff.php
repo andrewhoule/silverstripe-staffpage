@@ -32,7 +32,8 @@ class Staff extends DataObject {
     	'FirstName' => 'First Name',
     	'LastName' => 'Last Name',
     	'JobTitle' => 'Job Title',
-    	'Email' => 'Email'
+    	'Email' => 'Email',
+    	'Category' => 'Category'
   	);
 
   	public static $default_sort = 'SortOrder Asc';

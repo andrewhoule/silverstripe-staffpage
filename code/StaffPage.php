@@ -119,9 +119,9 @@ class StaffPage_Controller extends Page_Controller {
         $uncategorizedstaffmembers = new ArrayList();
         $staffmembers = $this->getComponents('Staff');
         if($staffmembers) {
-            foreach($staffmembers AS $staffmember) {
-                if($staffmember->Category() == "Other") {
-                    $uncategorizedstaffmembers->push($staffmember); 
+            foreach($staffmembers AS $staff) {
+                if($staff->Category() == "Other") {
+                    $uncategorizedstaffmembers->push($staff); 
                 }
             }
         }
@@ -129,7 +129,7 @@ class StaffPage_Controller extends Page_Controller {
     }
 
     public function MoreThanOneStaffCategory() {
-        if($this->StaffCategories()->count() > 1)
+        if($this->StaffCategories()->count() > 0)
             return true;
     }
     
