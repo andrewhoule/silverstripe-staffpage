@@ -16,9 +16,9 @@ class StaffPage extends Page {
 
     private static $defaults = array(
         'ThumbnailHeight' => '150',
-        'ThumbnailHeight' => '150',
-        'PhotoFullWidth' => '400',
-        'PhotoFullHeight' => '400'
+        'ThumbnailWidth' => '150',
+        'PhotoFullHeight' => '400',
+        'PhotoFullWidth' => '400'
     );
     
     private static $icon = 'staffpage/images/staffpage';
