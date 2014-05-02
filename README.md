@@ -12,3 +12,7 @@ Staff Page Module
 * Add the staffpage folder to your site's root.
 * Run http://yoursite.com/dev/build/?flush=1
 * Create a new Staff Page, add Staff and Categories, clap hands in excitement.
+
+## Todo
+* Icons for social links
+* Make phone numbers clickable (tel links)

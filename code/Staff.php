@@ -130,8 +130,14 @@ class Staff extends DataObject {
 		$originalwidth = $this->Photo()->getWidth();
 		$originalheight = $this->Photo()->getHeight();
 		if($originalwidth < $thumbnailwidth || $originalheight < $thumbnailheight) {
-			$x = $originalwidth;
-			$y = $originalheight;
+			if($originalwidth < $originalheight) {
+				$x = $originalwidth;
+				$y = $originalwidth;
+			}
+			else {
+				$x = $originalheight;
+				$y = $originalheight;
+			}
 		}
 		else {
 			if($thumbnailwidth != 0) 
@@ -148,8 +154,14 @@ class Staff extends DataObject {
 		$originalwidth = $this->Photo()->getWidth();
 		$originalheight = $this->Photo()->getHeight();
 		if($originalwidth < $fullwidth || $originalheight < $fullheight) {
-			$x = $originalwidth;
-			$y = $originalheight;
+			if($originalwidth < $originalheight) {
+				$x = $originalwidth;
+				$y = $originalwidth;
+			}
+			else {
+				$x = $originalheight;
+				$y = $originalheight;
+			}
 		}
 		else {
 			if($fullwidth != 0) 
