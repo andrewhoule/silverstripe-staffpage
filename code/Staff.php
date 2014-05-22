@@ -54,11 +54,11 @@ class Staff extends DataObject {
 			$categories = StaffCategory::get()->filter("StaffPageID","$this->StaffPageID")->sort("Title ASC");
 			$map = $categories ? $categories->map('ID', 'Title', 'Please Select') : array();
 			if($map) {
-				$categorydropdown = DropdownField::create('StaffCategoryID')->setTitle('Title')->setSource($map);
+				$categorydropdown = DropdownField::create('StaffCategoryID')->setTitle('Category')->setSource($map);
 				$categorydropdown->setEmptyString("-- Please Select --");
 			}
 			else {
-				$categorydropdown = DropdownField::create('StaffCategoryID')->setTitle('Title')->setSource($map);
+				$categorydropdown = DropdownField::create('StaffCategoryID')->setTitle('Category')->setSource($map);
 				$categorydropdown->setEmptyString("There are no categories created yet"); 
 			}
 		}
