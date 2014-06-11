@@ -7,5 +7,5 @@
 			<p>$Bio</p>
 		<% end_if %>
 	<% end_loop %>
+	<p><a href="$Link" class="button">Back to $MenuTitle</a></p>
 </div><!-- staff-member-full -->
-<p><a href="$Link" class="button">Back to $MenuTitle</a></p>
