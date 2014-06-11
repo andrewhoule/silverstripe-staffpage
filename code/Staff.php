@@ -145,7 +145,13 @@ class Staff extends DataObject {
 			if($thumbnailheight != 0) 
 				$y = $thumbnailheight;
 		}
-		return $this->Photo()->CroppedImage($x,$y);
+		if($this->Photo()->exists())
+		 	return $this->Photo()->CroppedImage($x,$y);
+		else {
+			if($this->StaffPage()->DefaultStaffPhoto()->exists()) {
+				return $this->StaffPage()->DefaultStaffPhoto()->CroppedImage($thumbnailwidth,$thumbnailheight);
+			}
+		}
 	}
 
 	public function PhotoSized($x=700,$y=700) {

@@ -8,6 +8,10 @@ class StaffPage extends Page {
         'PhotoFullHeight' => 'Int',
         'PhotoFullWidth' => 'Int'
     );
+
+    private static $has_one = array (
+        'DefaultStaffPhoto' => 'Image'
+    );
     
     private static $has_many = array (
         'Staff' => 'Staff',
@@ -24,6 +28,9 @@ class StaffPage extends Page {
     private static $icon = 'staffpage/images/staffpage';
     
     public function getCMSFields() {
+        $DefaultStaffPhotoField = UploadField::create('DefaultStaffPhoto')->setTitle('Default Photo')->setDescription('Only used if individual staff photo is left empty');
+        $DefaultStaffPhotoField->folderName = "Staff"; 
+        $DefaultStaffPhotoField->getValidator()->allowedExtensions = array('jpg','jpeg','gif','png');
         $fields = parent::getCMSFields();
         $StaffGridField = new GridField(
             'Staff',
@@ -59,6 +66,7 @@ class StaffPage extends Page {
                 ->addComponent(new GridFieldSortableRows('SortID'))
         );
         $fields->addFieldToTab("Root.Categories", $StaffCategoriesGridField);
+        $fields->addFieldToTab("Root.Config", $DefaultStaffPhotoField);
         $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailWidth","Photo Thumbnail Width",50,400));
         $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailHeight","Photo Thumbnail Height",50,400));
         $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullWidth","Photo Fullsize Width",100,1200));
