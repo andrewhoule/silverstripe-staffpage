@@ -6,7 +6,8 @@ class StaffPage extends Page {
         'ThumbnailHeight' => 'Int',
         'ThumbnailWidth' => 'Int',
         'PhotoFullHeight' => 'Int',
-        'PhotoFullWidth' => 'Int'
+        'PhotoFullWidth' => 'Int',
+        'DisableFullProfileLink' => 'Boolean'
     );
 
     private static $has_one = array (
@@ -22,7 +23,8 @@ class StaffPage extends Page {
         'ThumbnailHeight' => '150',
         'ThumbnailWidth' => '150',
         'PhotoFullHeight' => '400',
-        'PhotoFullWidth' => '400'
+        'PhotoFullWidth' => '400',
+        'DisableFullProfileLink' => false
     );
     
     private static $icon = 'staffpage/images/staffpage';
@@ -71,6 +73,7 @@ class StaffPage extends Page {
         $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailHeight","Photo Thumbnail Height",50,400));
         $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullWidth","Photo Fullsize Width",100,1200));
         $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullHeight","Photo Fullsize Height",100,1200));
+        $fields->addFieldToTab('Root.Config', CheckboxField::create('DisableFullProfileLink')->setTitle('Disable Full Profile Link')->setDescription('Staff names won\'t be linked to their full profiles'));
         return $fields;
     }
  

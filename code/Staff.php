@@ -186,5 +186,10 @@ class Staff extends DataObject {
 		if($this->Email || $this->JobTitle || $this->Phone || $this->Fax || $this->Cell || $this->OfficeLocation || $this->Website || $this->Facebook || $this->Twitter) 
 			return true;
 	}
+
+	public function HasProfileLink() {
+        if($this->StaffPage()->DisableFullProfileLink != 1) 
+            return true;
+    }
 	
 }
