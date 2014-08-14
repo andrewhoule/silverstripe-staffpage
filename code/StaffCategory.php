@@ -19,9 +19,14 @@ class StaffCategory extends DataObject {
 	private static $summary_fields = array (
 		'Title' => 'Title',
 		'DescriptionExcerpt' => 'Description'
-   	);
+   );
 
-   	private static $default_sort = 'SortID Asc';
+   public function canCreate($Member = null) { return true; }
+	public function canEdit($Member = null) { return true; }
+	public function canView($Member = null) { return true; }
+	public function canDelete($Member = null) { return true; }
+
+   private static $default_sort = 'SortID Asc';
 	
 	public function getCMSFields() {
 		return new FieldList(
