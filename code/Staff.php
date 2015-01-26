@@ -23,22 +23,21 @@ class Staff extends DataObject {
 	
 	private static $has_one = array (
 		'Photo' => 'Image',
-		'StaffPage' => 'StaffPage',
 		'StaffCategory' => 'StaffCategory'
 	);
 
 	private static $summary_fields = array( 
 		'Thumbnail' => 'Photo',
-    	'FirstName' => 'First Name',
-    	'LastName' => 'Last Name',
-    	'JobTitle' => 'Job Title',
-    	'Email' => 'Email',
-    	'Category' => 'Category'
-  	);
+  	'FirstName' => 'First Name',
+  	'LastName' => 'Last Name',
+  	'JobTitle' => 'Job Title',
+  	'Email' => 'Email',
+  	'Category' => 'Category'
+  );
 
-  	public static $default_sort = 'SortOrder Asc';
+  public static $default_sort = 'SortOrder Asc';
 
-  	public function canCreate($Member = null) { return true; }
+  public function canCreate($Member = null) { return true; }
 	public function canEdit($Member = null) { return true; }
 	public function canView($Member = null) { return true; }
 	public function canDelete($Member = null) { return true; }
@@ -51,7 +50,7 @@ class Staff extends DataObject {
 			$categorydropdown = TextField::create('CategoryDisclaimer')->setTitle('Category')->setDisabled(true)->setValue('You can assign a category once you have saved the record for the first time.');
 		}
 		else {
-			$categories = StaffCategory::get()->filter("StaffPageID","$this->StaffPageID")->sort("Title ASC");
+			$categories = StaffCategory::get()->sort("Title ASC");
 			$map = $categories ? $categories->map('ID', 'Title', 'Please Select') : array();
 			if($map) {
 				$categorydropdown = DropdownField::create('StaffCategoryID')->setTitle('Category')->setSource($map);
@@ -92,7 +91,7 @@ class Staff extends DataObject {
 	}
 
 	public function Link() {
-		return $this->StaffPage()->Link("show") . "/" . $this->ID;
+    return Controller::curr()->Link("show") . "/" . $this->ID;
 	}
 
 	public function FullName() {
@@ -103,7 +102,7 @@ class Staff extends DataObject {
 	}
 
 	public function BioExcerpt($length = 300) {
-	   	$text = strip_tags($this->Bio);
+    $text = strip_tags($this->Bio);
 		$length = abs((int)$length);
 		if(strlen($text) > $length) {
 			$text = preg_replace("/^(.{1,$length})(\s.*|$)/s", '\\1...', $text);
@@ -125,8 +124,8 @@ class Staff extends DataObject {
 	}
 
 	public function PhotoCropped($x=200,$y=200) {
-		$thumbnailwidth = $this->getComponent('StaffPage')->ThumbnailWidth;
-		$thumbnailheight = $this->getComponent('StaffPage')->ThumbnailHeight;
+		$thumbnailwidth = Controller::curr()->ThumbnailWidth;
+		$thumbnailheight = Controller::curr()->ThumbnailHeight;
 		$originalwidth = $this->Photo()->getWidth();
 		$originalheight = $this->Photo()->getHeight();
 		if($originalwidth < $thumbnailwidth || $originalheight < $thumbnailheight) {
@@ -148,15 +147,15 @@ class Staff extends DataObject {
 		if($this->Photo()->exists())
 		 	return $this->Photo()->CroppedImage($x,$y);
 		else {
-			if($this->StaffPage()->DefaultStaffPhoto()->exists()) {
-				return $this->StaffPage()->DefaultStaffPhoto()->CroppedImage($thumbnailwidth,$thumbnailheight);
+			if(Controller::curr()->DefaultStaffPhoto()->exists()) {
+				return Controller::curr()->DefaultStaffPhoto()->CroppedImage($thumbnailwidth,$thumbnailheight);
 			}
 		}
 	}
 
 	public function PhotoSized($x=700,$y=700) {
-		$fullwidth = $this->getComponent('StaffPage')->PhotoFullWidth;
-		$fullheight = $this->getComponent('StaffPage')->PhotoFullHeight;
+		$fullwidth = Controller::curr()->PhotoFullWidth;
+		$fullheight = Controller::curr()->PhotoFullHeight;
 		$originalwidth = $this->Photo()->getWidth();
 		$originalheight = $this->Photo()->getHeight();
 		if($originalwidth < $fullwidth || $originalheight < $fullheight) {
@@ -188,8 +187,8 @@ class Staff extends DataObject {
 	}
 
 	public function HasProfileLink() {
-        if($this->StaffPage()->DisableFullProfileLink != 1) 
-            return true;
-    }
+    if(Controller::curr()->DisableFullProfileLink != 1)
+      return 'test';
+  }
 	
 }
