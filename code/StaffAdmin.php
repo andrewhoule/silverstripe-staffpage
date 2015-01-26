@@ -4,8 +4,7 @@ class StaffAdmin extends ModelAdmin {
 
   private static $managed_models = array(
     'Staff',
-    'StaffCategory',
-    'StaffConfig'
+    'StaffCategory'
   ); 
   private static $url_segment = 'staff';
   private static $menu_title = 'Staff';

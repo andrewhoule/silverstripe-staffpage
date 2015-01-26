@@ -35,6 +35,10 @@ class Staff extends DataObject {
   	'Category' => 'Category'
   );
 
+  public function plural_name() {
+    return "Staff";
+  }
+
   public static $default_sort = 'SortOrder Asc';
 
   public function canCreate($Member = null) { return true; }
