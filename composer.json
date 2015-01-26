@@ -1,6 +1,6 @@
 {
     "name": "andrewhoule/silverstripe-staffpage",
-    "description": "Staff page type with optional categories",
+    "description": "Creates staff model admin with optional categories plus staff page and staff category page",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "staff", "staff page", "staff members"],
     "license": "BSD-3-Clause",
@@ -19,6 +19,6 @@
         "unclecheese/betterbuttons": "*"
     },
     "extra": {
-        "installer-name": "staffpage"
+        "installer-name": "staff"
     }
 }
