@@ -13,7 +13,7 @@
         "silverstripe/cms": "3.1.*",
         "silverstripe/framework": "3.1.*",
         "undefinedoffset/sortablegridfield": "*",
-        "tractorcow/silverstripe-sliderfield": "dev-master"
+        "tractorcow/silverstripe-sliderfield": "*"
     },
     "suggest": {
         "unclecheese/betterbuttons": "*"
