@@ -3,6 +3,7 @@
 class StaffPage extends Page {
 
   private static $db = array(
+    'AfterContent' => 'HTMLText',
     'ThumbnailHeight' => 'Int',
     'ThumbnailWidth' => 'Int',
     'PhotoFullHeight' => 'Int',
@@ -26,14 +27,15 @@ class StaffPage extends Page {
     
   public function getCMSFields() {
     $DefaultStaffPhotoField = UploadField::create('DefaultStaffPhoto')->setTitle('Default Photo')->setDescription('Only used if individual staff photo is left empty');
-    $DefaultStaffPhotoField->folderName = "Staff"; 
+    $DefaultStaffPhotoField->folderName = 'Staff'; 
     $DefaultStaffPhotoField->getValidator()->allowedExtensions = array('jpg','jpeg','gif','png');
     $fields = parent::getCMSFields();
-    $fields->addFieldToTab("Root.Config", $DefaultStaffPhotoField);
-    $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailWidth","Photo Thumbnail Width",50,400));
-    $fields->addFieldToTab("Root.Config", SliderField::create("ThumbnailHeight","Photo Thumbnail Height",50,400));
-    $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullWidth","Photo Fullsize Width",100,1200));
-    $fields->addFieldToTab("Root.Config", SliderField::create("PhotoFullHeight","Photo Fullsize Height",100,1200));
+    $fields->addFieldToTab('Root.Main', HTMLEditorField::create('AfterContent')->setTitle('Content After Staff'),'Metadata');
+    $fields->addFieldToTab('Root.Config', $DefaultStaffPhotoField);
+    $fields->addFieldToTab('Root.Config', SliderField::create('ThumbnailWidth','Photo Thumbnail Width',50,400));
+    $fields->addFieldToTab('Root.Config', SliderField::create('ThumbnailHeight','Photo Thumbnail Height',50,400));
+    $fields->addFieldToTab('Root.Config', SliderField::create('PhotoFullWidth','Photo Fullsize Width',100,1200));
+    $fields->addFieldToTab('Root.Config', SliderField::create('PhotoFullHeight','Photo Fullsize Height',100,1200));
     $fields->addFieldToTab('Root.Config', CheckboxField::create('DisableFullProfileLink')->setTitle('Disable Full Profile Link')->setDescription('Staff names won\'t be linked to their full profiles'));
     return $fields;
   }
@@ -106,9 +108,8 @@ class StaffPage_Controller extends Page_Controller {
   }
 
   public function HasProfileLink() {
-    // if($this->DisableFullProfileLink != 1) 
-      // return true;
-      return "test";
+    if($this->DisableFullProfileLink != 1) 
+      return true;
   }
     
 }

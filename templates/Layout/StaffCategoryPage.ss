@@ -14,3 +14,4 @@
     <% end_loop %>
   </div><!-- .staff-categories -->
 <% end_if %>
+<% if $AfterContent %>$AfterContent<% end_if %>
