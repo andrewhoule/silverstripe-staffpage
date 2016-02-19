@@ -33,6 +33,9 @@ class StaffAdmin extends ModelAdmin
         $form=parent::getEditForm($id, $fields);
         if ($this->modelClass=='Staff' && $gridField=$form->Fields()->dataFieldByName($this->sanitiseClassName($this->modelClass))) {
         }
+        if($gridField instanceof GridField) {
+            $gridField->getConfig()->addComponent(new GridFieldSortableRows('SortOrder'));
+        }
         return $form;
     }
 }
