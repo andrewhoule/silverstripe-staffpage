@@ -2,13 +2,13 @@
 
 class Staff extends DataObject
 {
-    
+
     private static $db = array(
         'SortOrder' => 'Int',
         'Prefix' => 'Varchar',
         'FirstName' => 'Varchar',
         'MiddleName' => 'Varchar',
-        'LastName' => 'Varchar(',
+        'LastName' => 'Varchar',
         'Suffix' => 'Varchar',
         'Email' => 'Text',
         'Phone' => 'Text',
@@ -21,7 +21,7 @@ class Staff extends DataObject
         'Twitter' => 'Text',
         'Bio' => 'HTMLText'
     );
-    
+
     private static $has_one = array(
         'Photo' => 'Image',
         'StaffCategory' => 'StaffCategory'
@@ -59,7 +59,7 @@ class Staff extends DataObject
     {
         return true;
     }
-    
+
     public function getCMSFields()
     {
         $ImageField = UploadField::create('Photo');
@@ -131,7 +131,7 @@ class Staff extends DataObject
         }
         return $text;
     }
-    
+
     public function ObfuscatedEmail()
     {
         $email = $this->Email;
